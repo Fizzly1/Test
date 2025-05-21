@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Game</title>
+    <style>
+        h1 {
+            background-color: white;
+            text-align: center;
+            height: 40px;
+            width: 450px;
+            margin: auto;
+        }
+        body {
+            background-image: url("https://cdn1.epicgames.com/spt-assets/c1586295960b46f88bbfeec32c199e0e/wuthering-waves-uw6vy.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            
+            }
+        .Box{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(255, 255, 255, 0.7);
+            width: 100%;
+            max-width: 1280px;
+            height: 70vh;
+            margin: 90px auto;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+            }
+    </style>
+</head>
+<body>
+   
+    <h1>THIS IS MATH GAME</h1>
+    <div class="Box">
+        <h1>Game here</h1>
+        <div class="Box">
+    <h1>Pokémon Battle</h1>
+    <div style="display: flex; justify-content: space-around; width: 100%; max-width: 600px;">
+        <div>
+            <h2>You</h2>
+            <img src="https://img.pokemondb.net/artwork/pikachu.jpg" width="100">
+            <p>HP: <span id="playerHP">100</span></p>
+        </div>
+        <div>
+            <h2>Enemy</h2>
+            <img src="https://img.pokemondb.net/artwork/charmander.jpg" width="100">
+            <p>HP: <span id="enemyHP">100</span></p>
+        </div>
+    </div>
+    <button onclick="attack()">⚡ Attack</button>
+    <p id="battleLog"></p>
+</div>
+
+<script>
+    let playerHP = 100;
+    let enemyHP = 100;
+
+    function attack() {
+        const playerDamage = Math.floor(Math.random() * 20) + 5;
+        const enemyDamage = Math.floor(Math.random() * 15) + 3;
+
+        enemyHP -= playerDamage;
+        playerHP -= enemyDamage;
+
+        if (enemyHP < 0) enemyHP = 0;
+        if (playerHP < 0) playerHP = 0;
+
+        document.getElementById("playerHP").textContent = playerHP;
+        document.getElementById("enemyHP").textContent = enemyHP;
+
+        document.getElementById("battleLog").textContent =
+            `You hit enemy for ${playerDamage} dmg! Enemy hit you for ${enemyDamage} dmg!`;
+
+        if (enemyHP === 0) {
+            document.getElementById("battleLog").textContent = "🎉 You Win!";
+        } else if (playerHP === 0) {
+            document.getElementById("battleLog").textContent = "💀 You Lose!";
+        }
+    }
+</script>
+
+    </div>
+</body>
+</html>
